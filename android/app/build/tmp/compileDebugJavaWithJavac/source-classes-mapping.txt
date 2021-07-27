@@ -1,0 +1,14 @@
+com/mealsapp/MainApplication.java
+ com.mealsapp.MainApplication
+ com.mealsapp.MainApplication$1
+com/mealsapp/MainActivity.java
+ com.mealsapp.MainActivity
+com/mealsapp/ReactNativeFlipper.java
+ com.mealsapp.ReactNativeFlipper
+ com.mealsapp.ReactNativeFlipper$1
+ com.mealsapp.ReactNativeFlipper$2
+ com.mealsapp.ReactNativeFlipper$2$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/mealsapp/BuildConfig.java
+ com.mealsapp.BuildConfig
