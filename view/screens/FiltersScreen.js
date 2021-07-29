@@ -1,10 +1,15 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import SwitchView from "../customViews/SwitchView";
 
 const FiltersScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Filters Screen</Text>
+      <Text style={styles.header}>Available Filters/Restrictions</Text>
+      <SwitchView switchText="Gluten-free" />
+      <SwitchView switchText="Vegetarian" />
+      <SwitchView switchText="Lactose-free" />
+      <SwitchView switchText="Vegan" />
     </View>
   );
 };
@@ -12,9 +17,12 @@ const FiltersScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+  },
+  header: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginVertical: 20,
   },
 });
 

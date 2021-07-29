@@ -1,14 +1,34 @@
-import React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
-import {CATEGORIES} from '../../data/dataDump';
+import React, { useEffect } from "react";
+import { View, StyleSheet, FlatList } from "react-native";
+import { MEALS } from "../../data/dataDump";
+import MealCardView from "../customViews/MealCardView";
 
-const MealsScreen = () => {
+const MealCategoriesScreen = (props) => {
+  const getFilteredArray = () => {
+    return MEALS.filter((meals) =>
+      meals.categoryIds.includes(props.route.params.mealsList.id)
+    );
+  };
+
+  useEffect(() =>
+    props.navigation.setOptions({
+      title: props.route.params.mealsList.title,
+    })
+  );
+
+  const openMealDetailsScreen = (meal) => {
+    props.navigation.navigate("MealDetails", {
+      mealItem: meal,
+    });
+  };
   return (
     <View style={styles.container}>
       <FlatList
-        data={CATEGORIES}
-        renderItem={({item}) => <Text>{item.title}</Text>}
-        keyExtractor={item => item.id}
+        data={getFilteredArray()}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <MealCardView meal={item} openMealDetails={openMealDetailsScreen} />
+        )}
       />
     </View>
   );
@@ -17,8 +37,7 @@ const MealsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
   },
 });
 
-export default MealsScreen;
+export default MealCategoriesScreen;
