@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Switch, Text } from "react-native";
+import React, { useState } from 'react';
+import { View, StyleSheet, Switch, Text } from 'react-native';
 
 const SwitchView = (props) => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -8,9 +8,15 @@ const SwitchView = (props) => {
     <View style={styles.switchView}>
       <Text style={styles.switchText}>{props.switchText}</Text>
       <Switch
-        trackColor={{ false: "grey", true: "#ff6347c0" }}
+        trackColor={{ false: 'grey', true: '#ff6347c0' }}
         thumbColor="white"
-        onValueChange={toggleSwitch}
+        onValueChange={() => {
+          props.switch({
+            switchState: !isEnabled,
+            type: props.switchText,
+          });
+          toggleSwitch;
+        }}
         value={isEnabled}
       />
     </View>
@@ -19,10 +25,10 @@ const SwitchView = (props) => {
 
 const styles = StyleSheet.create({
   switchView: {
-    width: "70%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    width: '70%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginVertical: 10,
   },
   switchText: {

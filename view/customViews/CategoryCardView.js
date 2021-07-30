@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import React from 'react';
+import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const CategoryCardView = (props) => {
   return (
@@ -15,14 +15,14 @@ const CategoryCardView = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end',
     height: 120,
     marginHorizontal: 10,
     marginVertical: 10,
     borderRadius: 5,
     padding: 5,
-    shadowColor: "lightgray",
+    shadowColor: 'lightgray',
     shadowRadius: 5,
     shadowOpacity: 1.0,
     elevation: 1,

@@ -1,18 +1,18 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
-import MealCategoriesScreen from "./view/screens/MealCategoriesScreen";
-import FiltersScreen from "./view/screens/FiltersScreen";
-import FavoritesScreen from "./view/screens/FavoritesScreen";
-import MealsScreen from "./view/screens/MealsScreen";
-import MealDetailsScreen from "./view/screens/MealDetailsScreen";
-import HamburgerMenu from "./view/customViews/HamburgerMenu";
-import FavoriteButton from "./view/customViews/FavoriteButton";
-import SaveButton from "./view/customViews/SaveButton";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { Platform } from "react-native";
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import MealCategoriesScreen from './view/screens/MealCategoriesScreen';
+import FiltersScreen from './view/screens/FiltersScreen';
+import FavoritesScreen from './view/screens/FavoritesScreen';
+import MealsScreen from './view/screens/MealsScreen';
+import MealDetailsScreen from './view/screens/MealDetailsScreen';
+import HamburgerMenu from './view/customViews/HamburgerMenu';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Platform } from 'react-native';
+import Store from './redux/Store';
+import { Provider } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 const FavoritesStack = createStackNavigator();
@@ -21,19 +21,19 @@ const FiltersStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const tabBarHeight = () => {
-  return Platform.OS === "ios" ? 80 : 50;
+  return Platform.OS === 'ios' ? 80 : 50;
 };
 
 const tabBarPaddingBottom = () => {
-  return Platform.OS === "ios" ? 25 : 5;
+  return Platform.OS === 'ios' ? 25 : 5;
 };
 
 const navigationBarColor = () => {
-  return Platform.OS === "ios" ? "white" : "tomato";
+  return Platform.OS === 'ios' ? 'white' : 'tomato';
 };
 
 const navigationTitleColor = () => {
-  return Platform.OS === "ios" ? "tomato" : "white";
+  return Platform.OS === 'ios' ? 'tomato' : 'white';
 };
 
 function MealStackScreen() {
@@ -50,7 +50,7 @@ function MealStackScreen() {
         name="Meal Categories"
         component={MealCategoriesScreen}
         options={(props) => ({
-          title: "Meal Categories",
+          title: 'Meal Categories',
           headerLeft: () => <HamburgerMenu navigation={props.navigation} />,
         })}
       />
@@ -59,8 +59,7 @@ function MealStackScreen() {
         name="MealDetails"
         component={MealDetailsScreen}
         options={() => ({
-          headerBackTitle: "Back",
-          headerRight: () => <FavoriteButton />,
+          headerBackTitle: 'Back',
         })}
       />
     </MealStack.Navigator>
@@ -69,17 +68,27 @@ function MealStackScreen() {
 
 function FavoritesStackScreen() {
   return (
-    <FavoritesStack.Navigator>
+    <FavoritesStack.Navigator
+      screenOptions={{
+        headerTintColor: navigationTitleColor(),
+        headerStyle: {
+          backgroundColor: navigationBarColor(),
+        },
+      }}
+    >
       <FavoritesStack.Screen
         name="Favorites"
         component={FavoritesScreen}
         options={({ navigation }) => ({
-          title: "Your Favorites",
+          title: 'Your Favorites',
           headerLeft: () => <HamburgerMenu navigation={navigation} />,
-          headerTintColor: navigationTitleColor(),
-          headerStyle: {
-            backgroundColor: navigationBarColor(),
-          },
+        })}
+      />
+      <FavoritesStack.Screen
+        name="MealDetails"
+        component={MealDetailsScreen}
+        options={() => ({
+          headerBackTitle: 'Back',
         })}
       />
     </FavoritesStack.Navigator>
@@ -93,9 +102,8 @@ function FiltersStackScreen() {
         name="Filters"
         component={FiltersScreen}
         options={({ navigation }) => ({
-          title: "Filters",
+          title: 'Filters',
           headerLeft: () => <HamburgerMenu navigation={navigation} />,
-          headerRight: () => <SaveButton />,
           headerTintColor: navigationTitleColor(),
           headerStyle: {
             backgroundColor: navigationBarColor(),
@@ -112,23 +120,23 @@ function TabScreens() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, size }) => {
           let iconName;
-          if (route.name === "Meals") {
-            iconName = "silverware-fork-knife";
-          } else if (route.name === "Favorites") {
-            iconName = "heart";
+          if (route.name === 'Meals') {
+            iconName = 'silverware-fork-knife';
+          } else if (route.name === 'Favorites') {
+            iconName = 'heart';
           }
           return (
             <Icon
               name={iconName}
               size={size}
-              color={focused ? "tomato" : "gray"}
+              color={focused ? 'tomato' : 'gray'}
             />
           );
         },
       })}
       tabBarOptions={{
         safeAreaInsets: { bottom: 0, top: 0, right: 0, left: 0 },
-        labelStyle: { color: "black" },
+        labelStyle: { color: 'black' },
         tabStyle: {
           paddingTop: 5,
           paddingBottom: tabBarPaddingBottom(),
@@ -144,18 +152,20 @@ function TabScreens() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        drawerContentOptions={{
-          labelStyle: {
-            color: "tomato",
-          },
-          activeBackgroundColor: "papayawhip",
-        }}
-      >
-        <Drawer.Screen name="Meals" component={TabScreens} />
-        <Drawer.Screen name="Filters" component={FiltersStackScreen} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={Store}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          drawerContentOptions={{
+            labelStyle: {
+              color: 'tomato',
+            },
+            activeBackgroundColor: 'papayawhip',
+          }}
+        >
+          <Drawer.Screen name="Meals" component={TabScreens} />
+          <Drawer.Screen name="Filters" component={FiltersStackScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

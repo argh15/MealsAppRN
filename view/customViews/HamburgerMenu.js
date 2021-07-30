@@ -1,6 +1,6 @@
-import React from "react";
-import { View, StyleSheet, Platform } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import React from 'react';
+import { View, StyleSheet, Platform } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const HamburgerMenu = ({ navigation }) => {
   const handleHamburgerMenu = () => {
@@ -21,17 +21,17 @@ const HamburgerMenu = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginStart: 10,
   },
   icon: {
     ...Platform.select({
       ios: {
-        color: "tomato",
+        color: 'tomato',
       },
       android: {
-        color: "white",
+        color: 'white',
       },
     }),
   },

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
-import { MEALS } from "../../data/dataDump";
-import MealCardView from "../customViews/MealCardView";
+import React, { useEffect } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
+import { MEALS } from '../../data/dataDump';
+import MealCardView from '../customViews/MealCardView';
 
-const MealCategoriesScreen = (props) => {
+const MealsScreen = (props) => {
   const getFilteredArray = () => {
     return MEALS.filter((meals) =>
       meals.categoryIds.includes(props.route.params.mealsList.id)
@@ -17,7 +17,7 @@ const MealCategoriesScreen = (props) => {
   );
 
   const openMealDetailsScreen = (meal) => {
-    props.navigation.navigate("MealDetails", {
+    props.navigation.navigate('MealDetails', {
       mealItem: meal,
     });
   };
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MealCategoriesScreen;
+export default MealsScreen;

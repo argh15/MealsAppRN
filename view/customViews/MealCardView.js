@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import {
   Text,
   TouchableOpacity,
   StyleSheet,
   View,
   ImageBackground,
-} from "react-native";
+} from 'react-native';
 
 const MealCardView = (props) => {
   return (
@@ -20,7 +20,7 @@ const MealCardView = (props) => {
           <Text style={styles.headerText}>{props.meal.title}</Text>
         </View>
         <View style={styles.statsView}>
-          <Text style={[styles.statsText, { textTransform: "none" }]}>
+          <Text style={[styles.statsText, { textTransform: 'none' }]}>
             {props.meal.duration}m
           </Text>
           <Text style={styles.statsText}>{props.meal.complexity}</Text>
@@ -34,33 +34,33 @@ const MealCardView = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     height: 250,
     marginHorizontal: 20,
     marginVertical: 10,
   },
   headerView: {
     flex: 0.2,
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#000000c0",
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000000c0',
   },
   statsView: {
     flex: 0.1,
-    flexDirection: "row",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "white",
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
   },
   headerText: {
     fontSize: 20,
-    color: "white",
+    color: 'white',
   },
   statsText: {
     fontSize: 16,
-    textTransform: "uppercase",
+    textTransform: 'uppercase',
   },
 });
 

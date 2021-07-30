@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Platform } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import React from 'react';
+import { View, StyleSheet, Platform } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const FavoriteButton = () => {
-  const [isFav, setIsFav] = useState(false);
+const FavoriteButton = (props) => {
   return (
     <View style={styles.container}>
       <Icon
-        name={isFav ? "heart" : "heart-outline"}
+        name={props.isFav() ? 'heart' : 'heart-outline'}
         size={28}
         style={styles.icon}
-        onPress={() => setIsFav(!isFav)}
+        onPress={() => {
+          if (props.isFav()) {
+            props.removeFromFavs();
+          } else {
+            props.addToFavs();
+          }
+          !props.isFav();
+        }}
       />
     </View>
   );
@@ -19,17 +25,17 @@ const FavoriteButton = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginEnd: 10,
   },
   icon: {
     ...Platform.select({
       ios: {
-        color: "tomato",
+        color: 'tomato',
       },
       android: {
-        color: "white",
+        color: 'white',
       },
     }),
   },

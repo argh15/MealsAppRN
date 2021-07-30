@@ -1,11 +1,11 @@
-import React from "react";
-import { View, StyleSheet, FlatList } from "react-native";
-import { CATEGORIES } from "../../data/dataDump";
-import CategoryCardView from "../customViews/CategoryCardView";
+import React from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
+import { CATEGORIES } from '../../data/dataDump';
+import CategoryCardView from '../customViews/CategoryCardView';
 
 const MealCategoriesScreen = (props) => {
   const openMealsScreen = (meals) => {
-    props.navigation.navigate("Meals", {
+    props.navigation.navigate('Meals', {
       mealsList: meals,
     });
   };
@@ -26,7 +26,7 @@ const MealCategoriesScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
 });
 
