@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Switch, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const SwitchView = (props) => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -10,13 +11,8 @@ const SwitchView = (props) => {
       <Switch
         trackColor={{ false: 'grey', true: '#ff6347c0' }}
         thumbColor="white"
-        onValueChange={() => {
-          props.switch({
-            switchState: !isEnabled,
-            type: props.switchText,
-          });
-          toggleSwitch;
-        }}
+        onValueChange={toggleSwitch}
+        onChange={props.setSwitchValue(isEnabled)}
         value={isEnabled}
       />
     </View>

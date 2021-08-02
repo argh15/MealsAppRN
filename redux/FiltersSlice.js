@@ -1,21 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isGlutenFree: false,
-  isVegetarian: false,
-  isLactoseFree: false,
-  isVegan: false,
+  filters: {
+    isGlutenFree: false,
+    isVegetarian: false,
+    isLactoseFree: false,
+    isVegan: false,
+  },
 };
 
 export const filtersSlice = createSlice({
-  name: 'favorites',
+  name: 'filters',
   initialState,
   reducers: {
     saveFilters: (state, action) => {
-      state.isGlutenFree = action.payload.isGlutenFree;
-      state.isVegetarian = action.payload.isVegetarian;
-      state.isLactoseFree = action.payload.isLactoseFree;
-      state.isVegan = action.payload.isVegan;
+      state.filters.isGlutenFree = action.payload.isGlutenFree;
+      state.filters.isVegetarian = action.payload.isVegetarian;
+      state.filters.isLactoseFree = action.payload.isLactoseFree;
+      state.filters.isVegan = action.payload.isVegan;
     },
   },
 });

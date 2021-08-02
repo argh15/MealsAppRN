@@ -29,7 +29,6 @@ const MealDetailsScreen = (props) => {
         <FavoriteButton
           addToFavs={addToFavs}
           removeFromFavs={removeFromFavs}
-          mealId={props.route.params.mealItem.id}
           isFav={checkIfFavorite}
         />
       ),
