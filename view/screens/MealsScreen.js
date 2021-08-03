@@ -1,25 +1,13 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
-import { MEALS } from '../../data/dataDump';
 import MealCardView from '../customViews/MealCardView';
 
 const MealsScreen = (props) => {
-  const filters = useSelector((state) => state.filtersReducer.filters);
+  const mealsList = useSelector((state) => state.filtersReducer.mealsList);
   const getCategoryFilteredArray = () => {
-    return MEALS.filter((meals) =>
+    return mealsList.filter((meals) =>
       meals.categoryIds.includes(props.route.params.mealsList.id)
-    );
-  };
-
-  const getFinalFilteredArray = () => {
-    var dataSet = getCategoryFilteredArray();
-    return dataSet.filter(
-      (meal) =>
-        meal.isGlutenFree === filters.isGlutenFree &&
-        meal.isLactoseFree === filters.isLactoseFree &&
-        meal.isVegan === filters.isVegan &&
-        meal.isVegetarian === filters.isVegetarian
     );
   };
 
@@ -37,7 +25,7 @@ const MealsScreen = (props) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={getFinalFilteredArray()}
+        data={getCategoryFilteredArray()}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <MealCardView meal={item} openMealDetails={openMealDetailsScreen} />

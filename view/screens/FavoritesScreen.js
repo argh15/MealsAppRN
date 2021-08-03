@@ -2,14 +2,14 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
-import { MEALS } from '../../data/dataDump';
 import MealCardView from '../customViews/MealCardView';
 
 const FavoritesScreen = (props) => {
   const favList = useSelector((state) => state.favoritesReducer.favoritesList);
+  const mealsList = useSelector((state) => state.filtersReducer.mealsList);
 
   const getArray = () => {
-    return MEALS.filter((item) => favList.includes(item.id));
+    return mealsList.filter((item) => favList.includes(item.id));
   };
 
   const openMealDetailsScreen = (meal) => {

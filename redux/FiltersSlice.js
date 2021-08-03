@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { MEALS } from '../data/dataDump';
 const initialState = {
   filters: {
     isGlutenFree: false,
@@ -7,6 +7,7 @@ const initialState = {
     isLactoseFree: false,
     isVegan: false,
   },
+  mealsList: MEALS,
 };
 
 export const filtersSlice = createSlice({
@@ -14,10 +15,17 @@ export const filtersSlice = createSlice({
   initialState,
   reducers: {
     saveFilters: (state, action) => {
-      state.filters.isGlutenFree = action.payload.isGlutenFree;
-      state.filters.isVegetarian = action.payload.isVegetarian;
-      state.filters.isLactoseFree = action.payload.isLactoseFree;
-      state.filters.isVegan = action.payload.isVegan;
+      if (action.payload.isGlutenFree) {
+        state.mealsList = state.mealsList.filter((meal) => meal.isGlutenFree);
+      } else if (action.payload.isVegetarian) {
+        state.mealsList = state.mealsList.filter((meal) => meal.isVegetarian);
+      } else if (action.payload.isLactoseFree) {
+        state.mealsList = state.mealsList.filter((meal) => meal.isLactoseFree);
+      } else if (action.payload.isVegan) {
+        state.mealsList = state.mealsList.filter((meal) => meal.isVegan);
+      } else {
+        state.mealsList = MEALS;
+      }
     },
   },
 });
